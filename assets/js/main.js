@@ -60,6 +60,39 @@
   }
   window.addEventListener('load', navbarlinksActive)
   onscroll(document, navbarlinksActive)
+// Sample menu data (you can fetch this from a server or use a database)
+let menu = [];
+
+// Function to add a new item to the menu
+function addItem() {
+    const itemName = document.getElementById("itemName").value;
+    const itemPrice = document.getElementById("itemPrice").value;
+
+    if (itemName && itemPrice) {
+        menu.push({ name: itemName, price: itemPrice });
+        displayMenu();
+        document.getElementById("itemName").value = "";
+        document.getElementById("itemPrice").value = "";
+    } else {
+        alert("Please enter both item name and price.");
+    }
+}
+
+// Function to display the menu
+function displayMenu() {
+    const menuList = document.getElementById("menuList");
+    menuList.innerHTML = "";
+
+    menu.forEach((item, index) => {
+        const listItem = document.createElement("li");
+        listItem.className = "list-group-item";
+        listItem.innerHTML = `${item.name} - $${item.price}`;
+        menuList.appendChild(listItem);
+    });
+}
+
+// Initial display of the menu
+displayMenu();
 
   /**
    * Scrolls to an element with header offset
